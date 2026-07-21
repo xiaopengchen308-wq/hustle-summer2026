@@ -32,11 +32,11 @@ class food:
 #   BREAK ON PURPOSE: after you build it, try item1.set_price(-5)
 #   PREDICT what happens: ______________
 #   Paste the message you see here: ______________
-def set_price(self,amount):
-    if amount<0:
-        print("price cannot be nagative")
-    else:
-        self.price= amount
+    def set_price(self,amount):
+        if amount<0:
+            print("price cannot be nagative")
+        else:
+            self.price= amount
 
 # TICKET 4: A second kind of item
 #   A new class that copies (inherits from) your first class.
@@ -52,11 +52,11 @@ class drinks(food):
 #   Give each class its own method (deliver, serve, play...).
 #   Same method name, different message.
 #   EXPLAIN why the same name can do two things: ______________
-def deliver(self):
-    print(f"Delievering your {self.name}!")
+    def deliver(self):
+        print(f"Delievering your {self.name}!")
 
-def deliver(self):
-    print(f"Delievering your {self.name} drinks!")
+    def deliver(self):
+        print(f"Delievering your {self.name} drinks!")
 
 
 # TICKET 2: Make your real items
@@ -64,6 +64,7 @@ def deliver(self):
 #   PREDICT what print(item1.name) shows: ______________
 item1=food("burger",15)
 item2=food("pizza",5)
+
 
 
 
@@ -88,7 +89,6 @@ class cart:
     def checkout(self):
         total = 0
         for item in self.items:
-            item.deliver()
             total += item.price
             print(f"Total: ${total}")
 
@@ -103,6 +103,7 @@ store={
 # TICKET 8: Let customers shop
 #   Use input() and a loop to keep adding picks until "done".
 #   PREDICT what happens when you pick 1: ______________
+
 cart=cart()
 while True:
     choice = input("Pick 1, 2, or 'done': ")
@@ -112,6 +113,8 @@ while True:
         cart.add(store[choice])
     else:
         print("Invalid choice.")
+
+
 
 
 # TICKET 10: Test the whole app
@@ -128,3 +131,47 @@ if you pick done the code will stop running
 # ============================================================
 # CHALLENGE: add a THIRD kind of item, or your own feature!
 # ============================================================
+#lab 7 Extension 
+#ticket 1
+import random
+
+welcome=["welcome in", "welcome for the shopping with us","hi, hope you had a good day here"]
+print(random.choice(welcome))
+
+'''
+ticket 2
+the set_price method is at ticket 3 for the original lab 7
+'''
+item1.set_price(100)
+item2.set_price(80)
+print(item1.name + " - $ " + str(item1.price))
+
+#ticket 3
+print("Menu:")
+
+for number, item in store.items():
+    print(number + ": " + item.name + " - $" + str(item.price))
+
+#ticket 4
+while True:
+    choice = input("pick an number to order or type done : ")
+
+    if choice =="done":
+        break
+    elif choice in store:
+        cart.add(store[choice])
+    else:
+        print("sorry, thats not on the menu")
+
+#ticket 5
+print("receipt :")
+
+for item in cart.items:
+    print(item.name +" "+ str(item.price))
+
+
+#ticket 6
+print("you bought" +" "+ str(len(cart.items))+" "+ "items")
+
+print(cart.checkout())
+
